@@ -4,7 +4,7 @@ module.exports = {
     connection: {
       host: 'pg.cse.taylor.edu',
       user: 'jerrod_anderson',
-      password: 'yiniluxu',
+      password: 'sunerizu',
       database: 'jerrod_anderson'
     }
   },

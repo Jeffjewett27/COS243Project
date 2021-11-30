@@ -2,6 +2,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('Passenger').del()
+    .then(function () {return knex('Drivers').del()})
     .then(function () {return knex('Ride').del()})
     .then(function () {return knex('Location').del()})
     .then(function () {return knex('Authorization').del()})
@@ -15,7 +16,8 @@ exports.seed = function(knex) {
       return knex('User').insert([
         {id: 1, firstName: 'Jerrod', lastName: 'anderson', email:'jerrod@derson.us', password:'no', phone: '7203630816', isAdmin: 't'},
         {id: 2, firstName: 'Jeff', lastName: 'Jewett', email:'jeff_jewett@taylor.edu', password:'no', phone: '5555555555', isAdmin: 't'},
-        {id: 3, firstName: 'Jason', lastName: 'Doster', email:'jason_doster@taylor.edu', password:'no', phone: '5555555555', isAdmin: 't'}
+        {id: 3, firstName: 'Jason', lastName: 'Doster', email:'jason_doster@taylor.edu', password:'no', phone: '5555555555', isAdmin: 't'},
+        {id: 4, firstName: 'Tom', lastName: 'Nurkkala', email:'tnurkkala@taylor.edu', password:'ye', phone: '4444444444', isAdmin: 'f'}
       ]);//closing insert
     })//closes .then 1
     .then(function () { 
@@ -64,7 +66,8 @@ exports.seed = function(knex) {
       return knex('Driver').insert([
         {id: 1, userID: 1, licenseNumber: 'licenceNumber1', licenseState: 'CO'},
         {id: 2, userID: 2, licenseNumber: 'licenceNumber2', licenseState: 'IN'},
-        {id: 3, userID: 3, licenseNumber: 'licenceNumber3', licenseState: 'WA'}
+        {id: 3, userID: 3, licenseNumber: 'licenceNumber3', licenseState: 'WA'},
+        {id: 4, userID: 3, licenseNumber: 'licenceNumber4', licenseState: 'CO'}
       ]);//closing insert
     })
     .then(function () { 
