@@ -24,21 +24,24 @@ exports.seed = function(knex) {
       return knex('VehicleType').insert([
         {id: 1, type: 'Truck'},
         {id: 2, type: 'Midsize'},
-        {id: 3, type: 'Tree Hugger'}
+        {id: 3, type: 'Tree Hugger'},
+        {id: 4, type: 'Bug'}
       ]);//closing insert
     })
     .then(function () { 
       return knex('State').insert([
         {abbreviation: 'CO', name: 'Colorado'},
         {abbreviation: 'IN', name: 'Indiana'},
-        {abbreviation: 'WA', name: 'Washington'}
+        {abbreviation: 'WA', name: 'Washington'},
+        {abbreviation: 'HI', name: 'Hawaii'}
       ]);//closing insert
     })
     .then(function () { 
       return knex('Vehicle').insert([
         {id: 1, make: 'Ford', model: 'F150', color: 'white', vehicleTypeID: 1, capacity: 5, mpg: 11.0, licenseState: 'CO', licensePlate: 'HQY-999'},
         {id: 2, make: 'Ram', model: '1500', color: 'poop Brown', vehicleTypeID: 1, capacity: 4, mpg: 16.0, licenseState: 'CO', licensePlate: 'ILU-VMN'},
-        {id: 3, make: 'Toyota', model: 'Prius', color: 'green', vehicleTypeID: 3, capacity: 6, mpg: 50, licenseState: 'CO', licensePlate: 'LUV-YOU'}
+        {id: 3, make: 'Toyota', model: 'Prius', color: 'green', vehicleTypeID: 3, capacity: 6, mpg: 50, licenseState: 'CO', licensePlate: 'LUV-YOU'},
+        {id: 4, make: 'GM', model: 'Racer', color: 'lightning', vehicleTypeID: 3, capacity: 8, mpg: 12, licenseState: 'CO', licensePlate: 'BIG-BOI'}
       ]);//closing insert
     })
     .then(function () { 
@@ -46,6 +49,7 @@ exports.seed = function(knex) {
         {id: 1, name: 'City Land', address: 'RA 1', city: 'HR', state: 'CO', zipCode: 80130},
         {id: 2, name: 'buttF nowhere', address: 'RA 1', city: 'Upland', state: 'IN', zipCode: 46989},
         {id: 3, name: 'OilConquest1', address: 'RA 1', city: 'HR', state: 'IN', zipCode: 55555},
+        {id: 4, name: 'Billy and Son', address: '69 Addison', city: 'Doug', state: 'IN', zipCode: 54321},
       ]);//closing insert
     })
     .then(function () { 
@@ -53,6 +57,7 @@ exports.seed = function(knex) {
         {id: 1, date: '2020-02-08', time: '04:05', distance: 1000.0, fuelPrice: 100, fee: 3000, vehicleID: 1, fromLocationID: 1, toLocationID: 2},
         {id: 2, date: '1999-01-08', time: '04:05', distance: 500.0, fuelPrice: 20, fee: 3000, vehicleID: 2, fromLocationID: 2, toLocationID: 3},
         {id: 3, date: '1999-01-08', time: '04:05', distance: 100.0, fuelPrice: 10, fee: 900000, vehicleID: 3, fromLocationID: 3, toLocationID: 1},
+        {id: 4, date: '1999-01-08', time: '04:05', distance: 10.0, fuelPrice: 12, fee: 900, vehicleID: 3, fromLocationID: 3, toLocationID: 1},
       ]);//closing insert
     })
     .then(function () { 
@@ -67,7 +72,7 @@ exports.seed = function(knex) {
         {id: 1, userID: 1, licenseNumber: 'licenceNumber1', licenseState: 'CO'},
         {id: 2, userID: 2, licenseNumber: 'licenceNumber2', licenseState: 'IN'},
         {id: 3, userID: 3, licenseNumber: 'licenceNumber3', licenseState: 'WA'},
-        {id: 4, userID: 3, licenseNumber: 'licenceNumber4', licenseState: 'CO'}
+        {id: 4, userID: 3, licenseNumber: 'licenceNumber4', licenseState: 'CO'},
       ]);//closing insert
     })
     .then(function () { 
