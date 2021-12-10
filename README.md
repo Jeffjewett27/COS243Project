@@ -11,3 +11,5 @@ relations and GET tests: node ./tests/relationTests
 delete tests: node ./tests/deleteTests.js
 
 update tests: node ./tests/updateTests.js
+
+create tests: node ./tests/createTests.js
