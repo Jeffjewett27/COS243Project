@@ -172,20 +172,39 @@ async function init() {
     },
 
     {
+
       method: "POST",
+
       path: "/locations",
+
       handler: (request, h) => {
+
         var body=JSON.parse(request.payload);
-        return Location.query().insert(body);
+
+        Location.query().insert(body);
+
+        return request.payload.id;
+
     }
+
     },
+
     {
+
       method: "POST",
+
       path: "/rides",
+
       handler: (request, h) => {
+
         var body=JSON.parse(request.payload);
-        return Ride.query().insert(body);
+
+        Ride.query().insert(body);
+
+        return request.payload.id;
+
     }
+
     },
 
 
