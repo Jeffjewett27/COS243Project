@@ -1,8 +1,23 @@
 const { Model } = require("objection");
+const { hash, compare } = require("bcrypt");
+
+const SALT_ROUNDS = 10;
 
 class User extends Model {
-    static tableName() {
+    static get tableName() {
         return "User";
+    }
+
+    async $beforeInsert(queryContext) {
+    this.password = await hash(this.password, SALT_ROUNDS);
+    }
+
+    async $beforeUpdate(queryContext) {
+    this.password = await hash(this.password, SALT_ROUNDS);
+    }
+
+    async verifyPassword(plainTextPassword) {
+    return compare(plainTextPassword, this.password);
     }
 
     static get relationMappings() {
