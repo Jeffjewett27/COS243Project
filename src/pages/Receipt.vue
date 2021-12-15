@@ -42,7 +42,20 @@
         <h4>Total Cost</h4>
         <p style="width:5rem">${{ receipt.fee }}</p>
       </div>
+      <h3>Driver Details</h3>
+      <div style="display:flex; align-items: stretch; column-gap: 0.875rem;">
+        <h4>Name</h4>
+        <p style="width:9rem">{{ receipt.driver.name }}</p>
+        <h4>Phone</h4>
+        <p style="width:8rem">{{ receipt.driver.phone }}</p>
+        <h4>License</h4>
+        <p style="width:7rem">{{ receipt.driver.licenseId }}</p>
+        <h4>State</h4>
+        <p style="width:5rem">{{ receipt.driver.licenseState }}</p>
+      </div>
     </div>
+
+    <v-btn style="border: 1px solid #065100;" color="#065100" text v-on:click="home">Okay</v-btn>
 
     <div>
       <div class="text-xs-center">
@@ -85,6 +98,8 @@ export default {
       let dist = data.distance.toFixed(1);
       let fuel = data.fuelPrice.toFixed(2);
       let fee = data.fee.toFixed(2);
+
+      let driverDude = data.drivers[0];
       console.log(data.fromLocation.stateObj);
       this.receipt = {
         date: date,
@@ -104,6 +119,12 @@ export default {
           city: data.toLocation.city,
           state: data.toLocation.stateObj.name,
           zip: data.toLocation.zipCode
+        },
+        driver: {
+          name: driverDude.user.firstName + ' ' + driverDude.user.lastName,
+          licenseId: driverDude.licenseNumber,
+          licenseState: driverDude.licenseState,
+          phone: driverDude.user.phone
         }
       }
       console.log("data", this.receipt);
@@ -131,6 +152,12 @@ export default {
           city: '',
           state: '',
           zip: ''
+        },
+        driver: {
+          name: '',
+          licenseId: '',
+          licenseState: '',
+          phone: ''
         }
       },
 
@@ -203,6 +230,10 @@ export default {
         this.$router.push({ name: "home-page" });
       }
     },
+
+    home: function() {
+      this.$router.push({ name: "home-page" });
+    }
   },
 };
 </script>

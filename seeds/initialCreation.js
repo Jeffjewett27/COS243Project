@@ -121,10 +121,10 @@ exports.seed = function(knex) {
     })
     .then(function () { 
       return knex('Driver').insert([
-        {userID: 1, licenseNumber: 'licenceNumber1', licenseState: 'CO'},
-        {userID: 2, licenseNumber: 'licenceNumber2', licenseState: 'IN'},
-        {userID: 3, licenseNumber: 'licenceNumber3', licenseState: 'WA'},
-        {userID: 3, licenseNumber: 'licenceNumber4', licenseState: 'CO'},
+        {userID: 1, licenseNumber: 'AGH-5231', licenseState: 'CO'},
+        {userID: 2, licenseNumber: 'UTG-6725', licenseState: 'IN'},
+        {userID: 3, licenseNumber: 'HOTSTUF', licenseState: 'WA'},
+        {userID: 3, licenseNumber: 'BIB-2100', licenseState: 'CO'},
       ]);//closing insert
     })
     .then(function () { 

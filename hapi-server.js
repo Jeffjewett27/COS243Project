@@ -21,6 +21,7 @@ const { Ride } = require('./models/Ride.js');
 const { VehicleType } = require('./models/VehicleType.js');
 const { State } = require('./models/State.js');
 const { Location } = require('./models/Location.js');
+const { Drivers } = require('./models/Drivers.js');
 
 // Hapi
 const Joi = require("@hapi/joi"); // Input validation
@@ -266,13 +267,14 @@ async function init() {
           return loc2Add;
         }
 
+        let vehicleId = Math.floor(Math.random()*3+1)
         let newRide = await Ride.query().insert({
           date: date,
           time: time,
           distance: dist,
           fuelPrice: dist * fuelCost,
           fee: dist * fuelCost + flatFee,
-          vehicleID: 1,
+          vehicleID: vehicleId,
           fromLocationID: loc1Add.id,
           toLocationID: loc2Add.id
         })
@@ -281,6 +283,19 @@ async function init() {
           return {
             ok: false,
             msge: "Could not process ride"
+          }
+        }
+        
+        let driverId = Math.floor(Math.random()*3) + 1
+        let drive = await Drivers.query().insert([{
+          driverID: driverId,
+          rideID: newRide.id
+        }])
+
+        if (!drive) {
+          return {
+            ok: false,
+            msge: "Could not pair with driver"
           }
         }
 
@@ -301,7 +316,7 @@ async function init() {
       },
       handler: async (request, h) => {
         let ride = await Ride.query().withGraphFetched('fromLocation.stateObj').withGraphFetched('toLocation.stateObj')
-          .findById(request.params.id);
+          .withGraphFetched('drivers.user').findById(request.params.id);
         if (!ride) {
           return {
             ok: false,
@@ -333,7 +348,7 @@ async function init() {
             msge: `Passwords did not match'`,
           };
         }
-        const existingAccount = await Account.query()
+        const existingAccount = await User.query()
           .where("email", request.payload.email)
           .first();
         if (!existingAccount) {
@@ -357,7 +372,7 @@ async function init() {
           };
         }
 
-        const numUpdated = await Account.query()
+        const numUpdated = await User.query()
         .where("email", request.payload.email)
         .first().patch({
           password: request.payload.newPassword
